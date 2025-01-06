@@ -12,10 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('task_shares', function (Blueprint $table) {
-            $table->id();
             $table->foreignId('task_id')->constrained('tasks')->onDelete('cascade');
-            $table->foreignId('shared_with')->constrained('users')->onDelete('cascade');
-            $table->enum('permission', ['view', 'edit']);
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->enum('permission', ['view-only', 'edit']); // izin akses
             $table->timestamps();
         });
     }

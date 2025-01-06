@@ -9,15 +9,17 @@ class TaskShare extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['task_id', 'shared_with', 'permission'];
+    protected $fillable = ['task_id', 'user_id', 'permission'];
 
+    // Relasi ke task
     public function task()
     {
-        return $this->belongsTo(Task::class, 'task_id');
+        return $this->belongsTo(Task::class);
     }
 
+    // Relasi ke user
     public function user()
     {
-        return $this->belongsTo(User::class, 'shared_with');
+        return $this->belongsTo(User::class);
     }
 }
